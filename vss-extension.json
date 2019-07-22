@@ -1,0 +1,50 @@
+{
+    "manifestVersion": 1,
+    "id": "CloneVariableGroup",
+    "version": "1.0.0",
+    "name": "Clone Variable Group",
+    "description": "This task is develop to clone variable group in Azure DevOps from one project to another project.",
+    "publisher": "nsadiq",
+    "targets": [
+        {
+            "id": "Microsoft.VisualStudio.Services"
+        }
+    ],
+    "icons": {
+        "default": "icon.png"
+    },
+    "categories": [
+        "Azure Pipelines"
+    ],
+    "galleryFlags": [
+        "Public"
+    ],
+    "content": {
+        "details": {
+            "path": "overview.md"
+        }
+        
+    },
+    "contributions": [
+        {
+            "id": "NewReclicDeploymentMarker",
+            "type": "ms.vss-distributed-task.task",
+            "targets": [
+                "ms.vss-distributed-task.tasks"
+            ],
+            "properties": {
+                "name": "buildtask"
+            }
+        }
+    ],
+    "files": [
+        {
+            "path": "buildtask"
+        }
+    ],
+    "repository": {
+        "type": "git",
+        "uri": "https://github.com/nomansadiq11/newrelic-deployment-marker.git"
+    }
+
+}

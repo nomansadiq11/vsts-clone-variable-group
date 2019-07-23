@@ -1,10 +1,7 @@
-# NewRelic Deployment Marker task
+# Clone Variable Group from one Project to another Project
 
-This task is developed for to mark the deployment marker in NewRelic using Azure DevOps as CI/CD Pipelines. 
+This task is developed to clone variable group from one project to another project
 
 ### Features / Benefits
 
-- Task to define in Build & Release Pipelines to automate the deployment marker
-- Task get logged username and pass to NewRelic while deployment marker
-- Task has option to define revision value dynamically
-- Pass API key from variable as password protected fom
+- Task to define the input values and clone the variable group to different project

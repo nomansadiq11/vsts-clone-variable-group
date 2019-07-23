@@ -8,13 +8,12 @@ try {
     # Get inputs. 
     $APIKey = Get-VstsInput -Name 'APIKey' -Require 
     $APIKeyName = Get-VstsInput -Name 'APIKeyName' -Require 
-    $SourceGroupName = Get-VstsInput -Name 'SourceGroupName' -Require 
-    $DestinationGroupName = Get-VstsInput -Name 'DestinationGroupName' -Require 
     $SourceProjectName = Get-VstsInput -Name 'SourceProjectName' -Require 
+    $SourceGroupName = Get-VstsInput -Name 'SourceGroupName' -Require 
     $DestinationProjectName =  Get-VstsInput -Name 'DestinationProjectName' -Require 
-    $Organization =  Get-VstsInput -Name 'DestinationProjectName' -Require 
+    $DestinationGroupName = Get-VstsInput -Name 'DestinationGroupName' -Require 
+    $Organization =  env:SYSTEM_TASKDEFINITIONSURI
     
-
 
 function Create-BasicAuthHeader {
     Param(
@@ -34,7 +33,7 @@ function Create-BasicAuthHeader {
    
 
 
-$GetVariableGroup = Invoke-WebRequest https://dev.azure.com/$Organization/$SourceProjectName/_apis/distributedtask/variablegroups?groupName=$SourceGroupName'&'api-version=5.0-preview.1 -Headers (Create-BasicAuthHeader $APIKeyName $APIKey) -Method Get 
+$GetVariableGroup = Invoke-WebRequest $Organization + $SourceProjectName/_apis/distributedtask/variablegroups?groupName=$SourceGroupName'&'api-version=5.0-preview.1 -Headers (Create-BasicAuthHeader $APIKeyName $APIKey) -Method Get 
 
 $GetVariableGroupObject = $GetVariableGroup.content | ConvertFrom-Json
 
@@ -44,7 +43,7 @@ $GetVariableGroupObject = $GetVariableGroup.content | ConvertFrom-Json
         "variables" = $GetVariableGroupObject.value.variables 
         "type" = "Vsts"
         "name"= $DestinationGroupName
-        "description"= "A test variable group"
+        "description"= ""
 
     }
 
@@ -52,7 +51,7 @@ $GetVariableGroupObject = $GetVariableGroup.content | ConvertFrom-Json
 $jsonbody = $Body | convertto-json
 
 
-$create = Invoke-WebRequest https://dev.azure.com/$Organization/$DestinationProjectName/_apis/distributedtask/variablegroups?api-version=5.0-preview.1 -Headers (Create-BasicAuthHeader $APIKeyName $APIKey) -Method POST -ContentType 'application/json' -Body $jsonbody 
+$create = Invoke-WebRequest $Organization + $DestinationProjectName/_apis/distributedtask/variablegroups?api-version=5.0-preview.1 -Headers (Create-BasicAuthHeader $APIKeyName $APIKey) -Method POST -ContentType 'application/json' -Body $jsonbody 
 
 Write-Host $create
 

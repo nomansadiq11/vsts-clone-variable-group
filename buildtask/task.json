@@ -1,8 +1,8 @@
 {
     "id": "ba7d1938-81b7-4018-be0a-61093123521b",
-    "name": "NewReclic Deployment Marker",
-    "friendlyName": "NewReclic Deployment Marker",
-    "description": "NewReclic Deployment Marker",
+    "name": "CloneVariableGroup",
+    "friendlyName": "Clone Variable Group",
+    "description": "This task is develop to clone variable group in Azure DevOps from one project to another project.",
     "helpMarkDown": "",
     "category": "Build",
     "visibility": [
@@ -15,10 +15,10 @@
     "author": "Noman Sadiq",
     "version": {
         "Major": 1,
-        "Minor": 3,
-        "Patch": 5
+        "Minor": 0,
+        "Patch": 0
     },
-    "instanceNameFormat": "NewReclic Deployment Marker",
+    "instanceNameFormat": "Clone Variable Group",
     "groups": [
         {
             "name": "advanced",
@@ -36,7 +36,7 @@
             "helpMarkDown": "API Key to communicate your NewRelic Account"
         },
         {
-            "name": "APPID",
+            "name": "APIKeyName",
             "type": "string",
             "label": "Application ID",
             "defaultValue": "",
@@ -44,7 +44,15 @@
             "helpMarkDown": "Enter Application ID that you have in NewRelic"
         },
         {
-            "name": "Revision",
+            "name": "SourceProjectName",
+            "type": "string",
+            "label": "description",
+            "defaultValue": "",
+            "required": true,
+            "helpMarkDown": "Anything just for deployment information"
+        },
+        {
+            "name": "SourceGroupName",
             "type": "string",
             "label": "Revision",
             "defaultValue": "",
@@ -52,21 +60,22 @@
             "helpMarkDown": "Enter revision for deployment Marker"
         },
         {
-            "name": "changelog",
-            "type": "string",
-            "label": "changelog",
-            "defaultValue": "",
-            "required": true,
-            "helpMarkDown": "Change log e.g what changes are deployed"
-        },
-        {
-            "name": "description",
+            "name": "DestinationProjectName",
             "type": "string",
             "label": "description",
             "defaultValue": "",
             "required": true,
             "helpMarkDown": "Anything just for deployment information"
-        } 
+        },
+        {
+            "name": "DestinationGroupName",
+            "type": "string",
+            "label": "changelog",
+            "defaultValue": "",
+            "required": true,
+            "helpMarkDown": "Change log e.g what changes are deployed"
+        }
+         
     ],
     "execution": {
         "PowerShell3": {

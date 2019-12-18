@@ -17,7 +17,7 @@ function Create-BasicAuthHeader {
 
 $SourceGroupName = 'UAT'
 $DestinationGroupName = 'UAT'
-$APIKey = 'bmrirmwupf4bqjy27sfy2ej627f5p26ehn3sxsxcjwp6dqe7lydq'
+$APIKey = 'enter api key'
 $APIKeyName = 'any'
 
 $GetVariableGroup = Invoke-WebRequest https://dev.azure.com/osndxb-default/OSNEscalationManagement/_apis/distributedtask/variablegroups?groupName=$SourceGroupName'&'api-version=5.0-preview.1 -Headers (Create-BasicAuthHeader $APIKeyName $APIKey) -Method Get 
